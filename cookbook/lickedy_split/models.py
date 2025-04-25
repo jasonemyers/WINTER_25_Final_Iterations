@@ -11,17 +11,36 @@ from django.core.validators import (
 import uuid
 from django.core.exceptions import ValidationError
 from datetime import date
-
+import uuid
 
 class CustomAccountManager(BaseUserManager):
     """
     Custom user manager that handles both regular users and employees (superusers).
     """
+    def create_superuser(self, email, user_name, first_name, phone_number, password, **other_fields):
+        """
+        Creates super user/employee:
+        -   Staff and superuser status 
+        -   uses create_user for other info
+        """
+        other_fields.setdefault('is_staff', True)
+        other_fields.setdefault('is_superuser', True)
+        other_fields.setdefault('is_active', True)
+
+        if other_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must be assigned to is_staff=True.')
+        if other_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must be assigned to is_superuser=True.')
+        
+        return self.create_user(
+            email, user_name, first_name, password, phone_number, **other_fields
+        )
+    
     def create_user(self, email, user_name, first_name, password, phone_number, **other_fields):
         if not email:
-            raise ValueError(_('Users must have an email address'))
+            raise ValueError('Users must have an email address')
         if not phone_number:
-            raise ValueError(_('Users must have a phone number'))
+            raise ValueError('Users must have a phone number')
 
         email = self.normalize_email(email)
         user = self.model(
@@ -35,37 +54,12 @@ class CustomAccountManager(BaseUserManager):
         user.save()
         return user
 
-    def create_employee(self, email, user_name, first_name, password, phone_number, 
-                       last_name=None, about=None, position=None, ssn=None, **other_fields):
-        other_fields.setdefault('is_staff', True)
-        other_fields.setdefault('is_superuser', True)
-        other_fields.setdefault('is_active', True)
-        
-        if not position:
-            raise ValueError(_('Employees must have a position'))
-        if not ssn:
-            raise ValueError(_('Employees must have an SSN'))
-        
-        return self.create_user(
-            email=email,
-            user_name=user_name,
-            first_name=first_name,
-            password=password,
-            phone_number=phone_number,
-            last_name=last_name,
-            about=about,
-            position=position,
-            ssn=ssn,
-            **other_fields
-        )
-
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150)
-    password = models.CharField(_('password'), max_length=128)
     phone_number = models.CharField(
         max_length=15,
         validators=[
@@ -102,7 +96,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
 
     objects = CustomAccountManager()
     USERNAME_FIELD = 'email'

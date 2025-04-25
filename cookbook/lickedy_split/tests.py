@@ -1,13 +1,14 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
-from .models import NewUser, Recipe, Ingredient, RecipeIngredient, UserFavoriteRecipe, UserIngredient
+from .models import *
 from datetime import date, timedelta
 import tempfile
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+
 class ModelTests(TestCase):
     def setUp(self):
-        # Create test data that will be available for all tests
+        # Create test data available for all tests
         self.user = NewUser.objects.create_user(
             email='test@example.com',
             user_name='testuser',
@@ -16,12 +17,13 @@ class ModelTests(TestCase):
             phone_number='+1234567890'
         )
         
-        self.employee = NewUser.objects.create_employee(
+        # Create superuser (employee)
+        self.employee = NewUser.objects.create_superuser(
             email='employee@example.com',
             user_name='employee',
             first_name='Employee',
-            password='employeepass123',
             phone_number='+1987654321',
+            password='employeepass123',
             last_name='Smith',
             position='Developer',
             ssn='123-45-6789'
@@ -62,27 +64,29 @@ class ModelTests(TestCase):
         self.assertFalse(self.user.is_staff)
         self.assertFalse(self.user.is_superuser)
         
-    def test_create_employee_user(self):
-        """Test creating an employee user is successful"""
+    def test_create_superuser(self):
+        """Test creating a superuser (employee) is successful"""
         self.assertEqual(self.employee.email, 'employee@example.com')
         self.assertTrue(self.employee.is_staff)
         self.assertTrue(self.employee.is_superuser)
         self.assertEqual(self.employee.position, 'Developer')
+        self.assertEqual(self.employee.ssn, '123-45-6789')
         
     def test_ssn_validation(self):
         """Test SSN validation works properly"""
         with self.assertRaises(ValidationError):
-            user = NewUser.objects.create_employee(
+            # Attempt to create superuser with invalid SSN
+            user = NewUser.objects.create_superuser(
                 email='invalid@example.com',
                 user_name='invalid',
                 first_name='Invalid',
-                password='invalidpass123',
                 phone_number='+1111111111',
+                password='invalidpass123',
                 last_name='User',
                 position='Tester',
-                ssn='invalid-ssn'
+                ssn='invalid-ssn'  # Invalid format
             )
-            user.full_clean()
+            user.full_clean()  # Triggers model validation
     
     # Recipe Model Tests
     def test_recipe_creation(self):
