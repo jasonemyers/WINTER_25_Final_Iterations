@@ -33,7 +33,12 @@
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'recipes' %}">Recipes</a></li>
                 <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="#">Logout</a>></li>
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link">Log Out</button>
+                  </form>
+                </li>
                 {% else %}
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>

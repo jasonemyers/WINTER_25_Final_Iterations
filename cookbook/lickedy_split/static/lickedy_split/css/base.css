@@ -47,6 +47,7 @@ html, body {
 .logo:hover img {
     transform: scale(1.1); /* Zoom in effect */
 }
+
 .navbar ul li {
     list-style: none;
     display: inline-block;
@@ -72,6 +73,14 @@ html, body {
 .navbar ul li:hover:after{
     width: 100%;
 }
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+  }
+
+
+
+/*
 .dropdown {
   float: right;
   overflow: hidden;
@@ -88,11 +97,10 @@ html, body {
   font-family: inherit;
   margin: 0;
 }
+*/
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
 
+/*
 .navbar .dropdown-content {
   display: none;
   position: absolute;
@@ -118,6 +126,8 @@ html, body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+*/
 
 
 footer {

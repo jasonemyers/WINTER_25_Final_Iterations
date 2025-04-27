@@ -124,5 +124,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "/lickedy_split/profile/"
+LOGOUT_REDIRECT_URL = "/lickedy_split/home/"
 
 AUTH_USER_MODEL = 'lickedy_split.NewUser'
