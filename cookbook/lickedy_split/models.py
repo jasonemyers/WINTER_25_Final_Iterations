@@ -61,14 +61,15 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150)
     phone_number = models.CharField(
-        max_length=15,
-        validators=[
-            RegexValidator(
-                regex=r'^\+?1?\d{9,15}$',
-                message="Phone number must be entered in the format: '+999999999'"
-            )
-        ]
-    )
+    max_length=15,
+    validators=[
+        RegexValidator(
+            regex=r'^\d{9,15}$',
+            message="Phone number must contain 9-15 digits only"
+        )
+    ],
+    help_text="Enter 10 digits (e.g., 2485551234)"
+)
     last_name = models.CharField(max_length=150, blank=True, null=True)
     about = models.TextField(_('about'), max_length=500, blank=True, null=True)
     user_pic = models.ImageField(

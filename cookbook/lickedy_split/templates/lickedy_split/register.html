@@ -28,11 +28,11 @@
       <div class="input-box">
         <span class="icon"><i class="fa-solid fa-user"></i></span>
         <input type="text" 
-               name="user_name" 
-               id="id_user_name"
+               name="username" 
+               id="id_username"
                required
-               value="{{ form.user_name.value|default:'' }}">
-        <label for="id_user_name">Username</label>
+               value="{{ form.username.value|default:'' }}">
+        <label for="id_username">Username</label>
         {% if form.user_name.errors %}
           <div class="errorlist">{{ form.user_name.errors.0 }}</div>
         {% endif %}
@@ -72,14 +72,16 @@
         <input type="tel" 
                name="phone_number" 
                id="id_phone_number"
-               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+               pattern="\d{9,15}"
                required
-               value="{{ form.phone_number.value|default:'' }}">
-        <label for="id_phone_number">Phone Number (xxx-xxx-xxxx)</label>
+               value="{{ form.phone_number.value|default:'' }}"
+               placeholder="2485551234">
+        <label for="id_phone_number">Phone Number</label>
         {% if form.phone_number.errors %}
-          <div class="errorlist">{{ form.phone_number.errors.0 }}</div>
+            <div class="errorlist">{{ form.phone_number.errors.0 }}</div>
         {% endif %}
-      </div>
+        <div class="help-text">Enter 9-15 digits (no country code)</div>
+    </div>
 
       <!-- Password -->
       <div class="input-box">

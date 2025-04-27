@@ -4,20 +4,22 @@ from django.core.validators import RegexValidator
 from .models import NewUser
 import logging
 
+
 logger = logging.getLogger(__name__)
 
 class CustomUserCreationForm(UserCreationForm):
     phone_number = forms.CharField(
         validators=[
             RegexValidator(
-                regex=r'^\d{3}-\d{3}-\d{4}$',
-                message="Phone must be in XXX-XXX-XXXX format"
+                regex=r'^\d{9,15}$',
+                message="Phone number must contain 9-15 digits only"
             )
         ],
         widget=forms.TextInput(attrs={
-            'pattern': r'\d{3}-\d{3}-\d{4}',
-            'title': 'XXX-XXX-XXXX format',
-            'class': 'form-input'
+            'pattern': r'\d{9,15}',
+            'title': 'Enter 9-15 digits (no symbols)',
+            'class': 'form-input',
+            'placeholder': '2485551234'
         })
     )
 
@@ -29,8 +31,8 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = NewUser
-        fields = ('user_name', 'first_name', 'email', 'phone_number', 
-                  'password1', 'password2')
+        fields = ('username', 'first_name', 'email', 'phone_number', 
+                  'password1', 'password2', 'terms_agreed')
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
@@ -40,5 +42,6 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['phone_number'].help_text = self.Meta.model._meta.get_field('phone_number').help_text
         self.fields['password2'].label = "Confirm Password"
         self.fields['password1'].help_text = "Minimum 8 characters with numbers/symbols"

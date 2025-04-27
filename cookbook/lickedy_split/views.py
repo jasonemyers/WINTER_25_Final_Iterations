@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-
+from .forms import CustomUserCreationForm
 
 # Core Application Views
 def index_veiw(request):
@@ -38,8 +38,26 @@ def login_view(request):
     return render(request, 'lickedy_split/login.html')
 
 def register_view(request):
-    # index Landing page
-    return render(request, 'lickedy_split/register.html')
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            try:
+                user = form.save()
+                login(request, user)
+                messages.success(request, "Registration successful! Welcome!")
+                return redirect('home')
+            except Exception:
+                messages.error(request, "Account creation failed. Please try again.")
+                return render(request, 'lickedy_split/register.html', {'form': form})
+        else:
+            # Show all form errors to user
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.title()}: {error}")
+            return render(request, 'lickedy_split/register.html', {'form': form})
+    
+    # GET request - show empty form
+    return render(request, 'lickedy_split/register.html', {'form': CustomUserCreationForm()})
 
 def forgetpassword_view(request):
     # index Landing page
