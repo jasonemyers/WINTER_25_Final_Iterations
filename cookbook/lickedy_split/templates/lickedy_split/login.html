@@ -1,0 +1,73 @@
+{% extends 'lickedy_split/base.html' %}  
+{% load static %}
+
+{% block title %}
+  <title>Login | Lickedy-Split</title>
+{% endblock %}
+   
+{% block styling %}
+    <link rel="stylesheet" href="{% static 'lickedy_split/css/newlogin.css' %}">
+    <script src="{% static 'lickedy_split/js/script.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="wrapper">
+  <span class="icon-close">
+      <a href="{% url 'home' %}"><i class="fa-solid fa-xmark"></i></a>
+  </span>
+
+  <!-- Login Form -->
+  <div class="form-box login">
+    <h2>Login</h2>
+
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      
+      <!--Emial-->
+      <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+          <input type="email" id="username" name="username" required>
+          <label for="username">Email</label>
+      </div>
+      
+      <!--Password-->
+      <div class="input-box">
+          <span class="icon"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" id="password" name="password" required>
+          <label for="password">Password</label>
+      </div>
+  
+      <!-- login errors-->
+      {% if messages %}
+      <div class="error-messages">
+          {% for message in messages %}
+              <div class="errorlist">{{ message }}</div>
+          {% endfor %}
+      </div>
+      {% endif %}
+      
+      <!--forgot password-->
+      <div class="remember-forgot">
+        <label><input type="checkbox"> Remember Me</label>
+        <a href="{% url 'forgetpassword' %}" class="forgot-password-link">Forgot Password?</a>
+      </div>
+
+      <!--Submit-->
+      <button type="submit" class="btn">Login</button>
+      <div class="socialIcons">
+        <!-- Individual social media links -->
+        <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.gmail.com"><i class="fa-brands fa-google"></i></a>
+
+      </div>
+      <div class="login-register">
+        <p>Don't have an account? <a href="{% url 'register' %}" class="register-link">Register</a></p>
+      </div>
+  </form>
+  
+  </div>
+</div>
+{% endblock %}

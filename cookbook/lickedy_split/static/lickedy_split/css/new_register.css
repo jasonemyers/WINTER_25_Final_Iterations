@@ -1,0 +1,354 @@
+
+.wrapper{
+    position:relative;
+    top: auto;
+    left: auto;
+    margin: 80px auto; /* creates breathing room below header */
+    transform: none;   /* remove translate unless you want centering */
+    width: 450px;
+    min-height: 500px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform .5s ease, height .2s ease;
+}
+.wrapper.active{
+    height: 670px;
+}
+.wrapper .form-box{
+    width: 100%;
+    padding: 30px 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.wrapper .icon-close{
+    position:absolute;
+    top:0;
+    right:0;
+    width: 45px;
+    height: 45px;
+    background: #30a755;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+.form-box h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+.input-box{
+position: relative;
+width:100%;
+height: 60px;
+border-bottom: 2px solid #fff;
+margin: 12px 0;
+}
+
+.input-box label{
+position: absolute;
+top: 50%;
+left: 10px;
+transform: translateY(-50%);
+font-size: 1em;
+color: #fff;
+font-weight: 500;
+pointer-events: none;
+transition: .5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -5px;
+  font-size: 1em;
+  color: #ddd;
+}
+
+.input-box input{
+width: 100%;
+height: 100%;
+background: transparent;
+border: none;
+outline: none;
+color: #fff;
+font-weight: 600;
+padding: 10px;
+}
+
+.input-box .icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #30a755;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.remember-forgot{
+font-size: .9em;
+color:#fff;
+font-weight: 500;
+margin: -15px 0 15px;
+display: flex;
+justify-content: space-between;
+}
+.remember-forgot label input{
+accent-color: #fff;
+}
+.remember-forgot a{
+color: #fff;
+margin-right: 90px;
+text-decoration: none;
+}
+.remember-forgot a:hover{
+text-decoration: underline;
+}
+
+.btn{
+width: 100%;
+height: 45px;
+background: #30a755;;
+border: none;
+outline: none;
+border-radius: 6px;
+cursor: pointer;
+font-size: 1em;
+color: #000;
+font-weight: 500;
+}
+
+.login-register{
+font-size: .9em;
+color: #fff;
+text-align: center;
+font-weight: 500;
+margin: 25px 0 10px;
+}
+
+.login-register p a{
+    color: #30a755;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover{
+text-decoration: underline;
+}
+
+
+/* Modal Container */
+.terms-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;  /* Adjusts modal width relative to the wrapper */
+  max-width: 600px; /* Ensures it's not too large */
+  background: #000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255);
+  padding: 20px;
+  max-height: 50vh; /* Controls height */
+  overflow-y: auto; /* Enables scrolling */
+}
+
+/* Modal Header */
+.terms-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.terms-modal .modal-header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #fff;
+}
+
+/* Close Button */
+.terms-modal .close-btn {
+    position:absolute;
+     top:0;
+     right:0;
+     width: 45px;
+     height: 45px;
+     background: #30a755;
+     font-size: 2em;
+     color: #fff;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-bottom-left-radius: 20px;
+     cursor: pointer;
+     z-index: 1;
+}
+
+/* Modal Content */
+.terms-modal .modal-content {
+  padding: 15px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #fff;
+  max-height: 50vh; /* Limits content height */
+  overflow-y: auto; /* Allows scrolling */
+}
+
+.modal-content h3{
+    color:#30a755;
+}
+/* Agree Button */
+.terms-modal .agree-btn {
+  display: block;
+  width: 100%;
+  background: #30a755;
+  color: white;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.terms-modal .agree-btn:hover {
+  background: #30a755;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Error message styling */
+.errorlist {
+  color: #ff0000;
+  list-style: none;
+  padding: 5px 0;
+  font-size: 0.9em;
+}
+
+.terms-agreed-error {
+  color: #ff0000;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Make terms link clickable */
+.terms-link {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  color: #30a755;
+}
+
+/* Custom checkbox styling */
+.terms-label {
+  position: relative;
+  padding-left: 35px;
+  min-height: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #30a755;
+}
+
+/* Hide default checkbox */
+.terms-label input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 3;
+  margin: 0;
+}
+
+/* Custom checkbox */
+.checkmark {
+  position: absolute;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  z-index: 2;
+}
+
+/* On hover */
+.terms-label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When checkbox is checked */
+.terms-label input:checked ~ .checkmark {
+  background-color: #30a755;
+}
+
+/* Checkmark indicator */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  color: #30a755;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.terms-label input:checked ~ .checkmark:after {
+  display: block;
+
+}
+
+.terms-text {
+  margin-left: 5px;
+  color: #fff;
+}
+
+
+
+/* Tablets */
+@media (max-width: 768px) {
+  .wrapper {
+      width: 90%;
+      max-width: 450px;
+  }
+
+  .terms-modal {
+    width: 85%;
+    max-height: 60vh;
+  }
+}

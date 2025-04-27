@@ -1,0 +1,530 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url('../images/backgroundSH.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+a {
+    text-decoration: none;
+    color: #5f5f5f;
+}
+
+.logo{
+    width: 120px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    }
+.logo img {
+    width: 70%; /* Adjust size as needed */
+    height: 50%; /* Ensure height matches width for a perfect circle */
+    border-radius: 70%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fits well inside the circle */
+    display: block; /* Prevents unwanted spacing */
+}
+.logo:hover img {
+    transform: scale(1.1); /* Zoom in effect */
+}
+
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 30px;
+    margin-right: 15px;
+    display: block;
+}
+
+.search-box {
+    background: #f0f2f5;
+    width: 250px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.search-box input {
+    width: 100%;
+    background: transparent;
+    padding: 8px;
+    outline: none;
+    border: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.container {
+    display: flex;
+    padding: 10px 6%;
+    flex-wrap: wrap;
+    justify-content: ;
+}
+.top-box {
+    flex-basis: 100%;
+    align-self: flex-start;
+    top: 73px;
+}
+.profile-box, .expandable {
+    width: 100%; /* Ensure both components take up the full width of the parent */
+    margin-bottom: 20px; /* Add spacing between components */
+}
+.profile-box {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-picture {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    color: #30a755;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.upload-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #30a755;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.upload-label ion-icon {
+    font-size: 20px;
+    color: white;
+}
+
+.profile-info {
+    padding: 0 25px;
+}
+
+.profile-info h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.profile-info h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    font-size: 14px;
+    color: #555;
+}
+
+.profile-link {
+    margin-top: 20px;
+}
+
+.add-recipe-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #30a755;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.add-recipe-btn:hover {
+    background: red;
+}
+
+.add-recipe-btn ion-icon {
+    margin-right: 8px;
+}
+
+.expandable {
+    --xy-padding: 14px;
+    --border-radius: 6px;
+    --transition-ms: 0.3s;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     --border-color: #e0e0e0;
+    --background-color: #fff;
+    --hover-background: #f9f9f9;
+    --icon-color: #333;
+
+    margin: 1em 0;
+    font-size: 16px;
+    font-size: 16px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-color);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+.expandable:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.expandable--open .expandable_content_wrapper {
+    grid-template-rows: 1fr;
+}
+
+.expandable--open .expandable_icon {
+    transform: rotate(-90deg);
+}
+
+.expandable_title_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--xy-padding);
+    user-select: none;
+    background-color: #fff;
+    color: #000;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    cursor: pointer;
+}
+.expandable_title_bar:hover {
+    background-color: var(--hover-background);
+}
+
+.expandable_title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #333;
+}
+
+.expandable_icon {
+    transition: transform var(--transition-ms);
+}
+.expandable_content_wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.my_recipes_content {
+    padding: 0 var(--xy-padding);
+    border: 1px solid #dddddd;
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow: hidden;
+}
+.recipes {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-behavior: smooth;
+    white-space: nowrap; /* Prevent wrapping */
+    gap: 15px;
+    padding: 10px 0;
+    width: 100%;
+}
+/* General Styling for Recipe Cards */
+..recipe-card {
+   border: 1px solid #ddd;
+   padding: 1rem;
+   margin: 0.5rem;
+   border-radius: 10px;
+   background: #fff;
+   width: 200px;
+ }
+
+ .recipe-card img {
+   width: 100%;
+   border-radius: 8px;
+ }
+
+ .tag-list {
+   margin-top: 0.5rem;
+ }
+
+ .tag {
+   background: #f0f0f0;
+   padding: 0.3em 0.6em;
+   border-radius: 20px;
+   font-size: 0.8em;
+   margin-right: 0.2em;
+ }
+
+/* Scroll button styles */
+.scroll-btn {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: none; /* Initially hidden */
+}
+
+/* Ensure buttons appear only when hovering over .recipes */
+.expandable_content_wrapper:hover .scroll-btn {
+    display: block;
+}
+
+/* Positioning scroll buttons */
+.scroll-btn.left {
+    left: 10px;
+}
+
+.scroll-btn.right {
+    right: 10px;
+}
+
+/* Ensure the buttons do not overflow outside the "My Recipes" section */
+.expandable:hover .scroll-btn {
+    display: block;
+}
+
+.favorite_recipes_content {
+    padding: 0 var(--xy-padding);
+    border: 1px solid #dddddd;
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow: hidden;
+}
+.recent_recipes_content {
+    padding: 0 var(--xy-padding);
+    border: 1px solid #dddddd;
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow: hidden;
+}
+
+.meal_plan_content {
+    padding: 0 var(--xy-padding);
+    border: 1px solid #dddddd;
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow: hidden;
+}
+.shopping_list_content {
+    padding: 10 var(--xy-padding);
+    border: 1px solid #dddddd;
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow: hidden;
+}
+
+.shopping_list {
+  list-style: none;
+  padding: 0;
+}
+
+.shopping_list li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.shopping_checkbox {
+  margin-right: 10px;
+}
+
+.shopping_label {
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+.notes {
+  font-size: 12px;
+  color: #777;
+}
+
+.add_item_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #045be6;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.add_item_button:hover {
+  background: #0342a8;;
+}
+/* Hover effects for list items */
+.shopping_list li:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.edit-button, .delete-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  margin-left: 5px;
+}
+.edit-button:hover, .delete-button:hover {
+  color: #0056b3;
+}
+
+.edit-button i, .delete-button i {
+  font-size: 18px;
+}
+/* Sorting options styling */
+.sorting-options {
+  /*display: flex;*/
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#sort-options {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 600px) {
+    /* Adjust the search box for mobile */
+    .search-box {
+        background: transparent;
+        width: auto;
+        padding: 0;
+    }
+
+    .search-box input {
+        width: 0; /* Hide the input by default */
+        padding: 0;
+        transition: width 0.3s ease; /* Smooth transition for expanding the input */
+    }
+
+    /* Show the search input when the search icon is clicked */
+    .search-box.active input {
+        width: 150px; /* Adjust the width as needed */
+        padding: 8px;
+    }
+
+    /* Adjust the navbar profile image size */
+    .nav-profile-img {
+        width: 30px;
+    }
+
+    /* Adjust container padding for smaller screens */
+    .container {
+        padding: 15px 3%;
+    }
+
+    /* Adjust the profile box for mobile */
+    .profile-box {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    /* Adjust the profile picture size for mobile */
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Adjust the expandable sections for mobile */
+    .expandable {
+        margin: 0.5em 0; /* Reduce margin for smaller screens */
+    }
+
+    /* Adjust the add recipe button for mobile */
+    .add-recipe-btn {
+        padding: 8px 16px; /* Reduce padding for smaller screens */
+        font-size: 14px; /* Reduce font size for smaller screens */
+    }
+}

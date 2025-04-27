@@ -1,0 +1,194 @@
+{% extends 'lickedy_split/base.html' %}  
+{% load static %}
+
+{% block title %}
+  <title>Register | Lickedy-Split</title>
+{% endblock %}
+
+{% block styling %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'lickedy_split/css/new_register.css' %}">
+<script src="{% static 'lickedy_split/js/script.js' %}"></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="wrapper">
+  <span class="icon-close">
+      <a href="{% url 'home' %}"><i class="fa-solid fa-xmark"></i></a>
+  </span>
+
+  <!-- Register Form -->
+  <div class="form-box register">
+    <h2>Register</h2>
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      
+      <!-- Username -->
+      <div class="input-box">
+        <span class="icon"><i class="fa-solid fa-user"></i></span>
+        <input type="text" 
+               name="user_name" 
+               id="id_user_name"
+               required
+               value="{{ form.user_name.value|default:'' }}">
+        <label for="id_user_name">Username</label>
+        {% if form.user_name.errors %}
+          <div class="errorlist">{{ form.user_name.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- First Name -->
+      <div class="input-box">
+        <span class="icon"><i class="fa-solid fa-user"></i></span>
+        <input type="text" 
+               name="first_name" 
+               id="id_first_name"
+               required
+               value="{{ form.first_name.value|default:'' }}">
+        <label for="id_first_name">First Name</label>
+        {% if form.first_name.errors %}
+          <div class="errorlist">{{ form.first_name.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Email -->
+      <div class="input-box">
+        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+        <input type="email" 
+               name="email" 
+               id="id_email"
+               required
+               value="{{ form.email.value|default:'' }}">
+        <label for="id_email">Email</label>
+        {% if form.email.errors %}
+          <div class="errorlist">{{ form.email.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Phone Number -->
+      <div class="input-box">
+        <span class="icon"><i class="fa-solid fa-phone"></i></span>
+        <input type="tel" 
+               name="phone_number" 
+               id="id_phone_number"
+               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+               required
+               value="{{ form.phone_number.value|default:'' }}">
+        <label for="id_phone_number">Phone Number (xxx-xxx-xxxx)</label>
+        {% if form.phone_number.errors %}
+          <div class="errorlist">{{ form.phone_number.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Password -->
+      <div class="input-box">
+        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+        <input type="password" 
+               name="password1" 
+               id="id_password1"
+               required>
+        <label for="id_password1">Password</label>
+        {% if form.password1.errors %}
+          <div class="errorlist">{{ form.password1.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="input-box">
+        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+        <input type="password" 
+               name="password2" 
+               id="id_password2"
+               required>
+        <label for="id_password2">Confirm Password</label>
+        {% if form.password2.errors %}
+          <div class="errorlist">{{ form.password2.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Terms Agreement -->
+      <div class="remember-forgot">
+        <label class="terms-label">
+            {{ form.terms_agreed }}
+            <span class="checkmark"></span>
+            <span class="terms-text">
+                I agree to the 
+                <a href="#" class="terms-link" id="open-terms" aria-describedby="terms-error">terms & conditions</a>
+            </span>
+        </label>
+        {% if form.terms_agreed.errors %}
+            <div id="terms-error" class="errorlist">{{ form.terms_agreed.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+      <button type="submit" class="btn">Register</button>
+      <div class="login-register">
+        <p>Already have an account? <a href="{% url 'login' %}" class="login-link">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Terms Modal (keep existing content) -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="terms-modal" id="terms-modal">
+    
+    <div class="modal-header">
+      <h2>Terms & Conditions</h2>
+      <span class="close-btn"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <div class="modal-content">
+      <p>By registering an account with our Lickedy Split App, you agree to the following terms and conditions ("Terms"):</p>
+      <h3>1. Acceptance of Terms</h3>
+      <p>By registering for an account, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, you may not register for or use the app.</p>
+
+      <h3>2. Eligibility</h3>
+      <p>You must be at least 13 years old to use the app. By registering, you confirm that you are at least 13 years of age or have the consent of a parent or guardian to use the app.</p>
+
+      <h3>3. Account Registration</h3>
+      <p>To use the app, you are required to create an account by providing accurate and complete information. You agree to keep your account information up to date and maintain the confidentiality of your login credentials. You are solely responsible for all activities that occur under your account.</p>
+
+      <h3>4. Use of the App</h3>
+      <p>The app provides features such as creating and managing recipes, storing ingredients, and suggesting dishes based on the ingredients you have. You agree to use the app solely for personal, non-commercial purposes and in compliance with applicable laws and regulations.</p>
+
+      <h3>5. User Content</h3>
+      <p>You may upload and share content (e.g., recipes, images, or comments) through the app. By doing so, you grant the app a non-exclusive, royalty-free, worldwide license to use, display, and distribute such content for the purposes of providing and improving the app.</p>
+
+      <h3>6. Privacy and Data Collection</h3>
+      <p>We respect your privacy. By using the app, you consent to our collection and use of data as outlined in the Privacy Policy.</p>
+
+      <h3>7. Prohibited Activities</h3>
+      <p>You agree not to use the app for any unlawful or prohibited activities, including but not limited to:
+      <ul>
+        <li>Violating the rights of others</li>
+        <li>Uploading harmful or offensive content</li>
+        <li>Using the app for spam or harassment</li>
+        <li>Attempting to access another user’s account without permission</li>
+      </ul>
+      </p>
+
+      <h3>8. Termination</h3>
+      <p>We reserve the right to suspend or terminate your account at any time for violating these Terms or for any other reason. You may also deactivate your account at any time through your settings.</p>
+
+      <h3>9. Disclaimers and Limitations of Liability</h3>
+      <p>The app is provided "as is" and we make no warranties regarding the app's availability, functionality, or accuracy. We are not liable for any damages arising from your use or inability to use the app.</p>
+
+      <h3>10. Changes to Terms</h3>
+      <p>We may update these Terms at any time. We will notify you of any significant changes by posting an updated version on the app or through other means. Your continued use of the app after such changes will constitute your acceptance of the revised Terms.</p>
+
+      <h3>11. Governing Law</h3>
+      <p>These Terms will be governed by the laws of Michigan, and any disputes arising from these Terms will be resolved in the courts located in Michigan.</p>
+
+      <h3>12. Contact Information</h3>
+      <p>If you have any questions or concerns about these Terms, please contact us at <a href="mailto:LickedySplit@gmail.com">LickedySplit@gmail.com</a>.</p>
+
+    </div>
+    <button class="agree-btn" onclick="acceptTerms()">I Agree</button>
+  </div>
+
+
+</div>
+</div>
+
+
+{% endblock %}

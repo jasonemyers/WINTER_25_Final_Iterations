@@ -1,0 +1,37 @@
+{% extends 'lickedy_split/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>About | Lickedy-Split</title>
+{% endblock %}
+
+{% block styling %}
+<link rel="stylesheet" href="{% static 'lickedy_split/css/about.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="about-content">
+    <div class="about-container">
+        <h1>Welcome to Lickedy-Split!</h1>
+        <p><strong>Lickedy-Split</strong> is your go-to platform for discovering, sharing, and saving delicious recipes that are quick and easy to make. Whether you're a busy parent, a college student, or just someone who wants to eat well without spending hours in the kitchen, we've got something for you.</p>
+    </div>
+    <div class="about-container">
+        <h2>Our Mission</h2>
+        <p>We believe that cooking should be joyful, not stressful. Our mission is to help people prepare homemade meals fast — without sacrificing flavor, creativity, or nutrition. Lickedy-Split was born out of the desire to simplify home cooking and build a community of food lovers who value taste and time equally.</p>
+    </div>
+    <div class="about-container">
+        <h2>Features You'll Love</h2>
+        <ul>
+            <li>📝 Share and discover new recipes</li>
+            <li>⭐ Rate your favorites and bookmark them for later</li>
+            <li>💬 Leave reviews and tips for other cooks</li>
+            <li>🔎 Filter recipes by ingredients, time, or dietary needs</li>
+            <li>📱 Responsive design for cooking on the go</li>
+        </ul>
+    </div>
+    <div class="about-container">
+        <h2>Meet the Team</h2>
+        <p>We're a small group of developers, designers, and food enthusiasts who wanted to bring technology and taste together. We’re constantly improving Lickedy-Split and would love your feedback and ideas.</p>
+    </div>
+</div>
+{% endblock %}

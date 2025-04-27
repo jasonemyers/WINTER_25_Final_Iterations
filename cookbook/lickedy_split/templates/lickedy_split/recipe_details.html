@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiramisu Recipe - Lickety-Split</title>
+    <link rel="stylesheet" href="{% static 'lickedy_split/css/new_recipe.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="logo">
+        <a href="{% url 'profile' %}"><img src="{% static 'lickedy_split/images/logo.jpg' %}" alt="logo"></a>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">
+            <i class="fa fa-user"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'recipes' %}">Recipes</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Tiramisu</h1>
+
+    <div class="form-group">
+        <label>Recipe Name</label>
+        <div>Tiramisu</div>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <div>A classic Italian no-bake dessert made with espresso-soaked ladyfingers layered with mascarpone cream and dusted with cocoa powder.</div>
+    </div>
+
+    <div class="form-group">
+        <label>Recipe Notes</label>
+        <div>Chill for at least 6 hours before serving for best texture and flavor. Can be made a day in advance.</div>
+    </div>
+
+    <div class="tag-section">
+        <label>Tags</label>
+        <div id="tag-container">
+            <span class="tag">Dessert</span>
+            <span class="tag">Italian</span>
+            <span class="tag">Coffee</span>
+            <span class="tag">No Bake</span>
+        </div>
+    </div>
+
+    <div class="time-group">
+        <div class="form-group">
+            <label>Prep Time (minutes)</label>
+            <div>30</div>
+        </div>
+
+        <div class="form-group">
+            <label>Cook Time (minutes)</label>
+            <div>0</div>
+        </div>
+    </div>
+
+    <div class="ingredient-section">
+        <label>Ingredients</label>
+        <div class="ingredient-row">
+            <div>6 egg yolks</div>
+        </div>
+        <div class="ingredient-row">
+            <div>3/4 cup granulated sugar</div>
+        </div>
+        <div class="ingredient-row">
+            <div>2/3 cup milk</div>
+        </div>
+        <div class="ingredient-row">
+            <div>1 1/4 cups heavy cream</div>
+        </div>
+        <div class="ingredient-row">
+            <div>8 oz mascarpone cheese</div>
+        </div>
+        <div class="ingredient-row">
+            <div>1 cup strong brewed coffee (cooled)</div>
+        </div>
+        <div class="ingredient-row">
+            <div>1 package ladyfinger cookies</div>
+        </div>
+        <div class="ingredient-row">
+            <div>2 tbsp cocoa powder</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Instructions</label>
+        <div>
+            <ol>
+                <li>In a saucepan, whisk together egg yolks and sugar until smooth. Stir in milk and cook over medium heat, stirring constantly until slightly thickened (about 10 minutes). Cool slightly and chill in fridge.</li>
+                <li>Whip cream until stiff peaks form. In another bowl, beat mascarpone cheese until smooth.</li>
+                <li>Fold chilled egg mixture into mascarpone, then fold in whipped cream.</li>
+                <li>Dip ladyfingers in coffee quickly and layer in a 9x13 inch dish.</li>
+                <li>Spread half of the mascarpone mixture over ladyfingers. Repeat layers and top with sifted cocoa powder.</li>
+                <li>Refrigerate at least 6 hours or overnight before serving.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Recipe Image</label>
+        <img src="{% static 'lickedy_split/images/tiramisu.jpg' %}" alt="Tiramisu" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+    </div>
+
+    <div class="form-row">
+        <div class="form-group icon-group">
+            <label class="heart-toggle">
+                <i class="fa fa-heart" id="heart-icon" style="color: red;"></i>
+                <span>Marked as Favorite</span>
+            </label>
+        </div>
+
+        <div class="form-group icon-group">
+            <label>Rating</label>
+            <div class="star-rating">
+                <i class="fa fa-star active"></i>
+                <i class="fa fa-star active"></i>
+                <i class="fa fa-star active"></i>
+                <i class="fa fa-star active"></i>
+                <i class="fa fa-star active"></i>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="submit-btn">Edit Recipe</button>
+</div>
+
+</body>
+</html>

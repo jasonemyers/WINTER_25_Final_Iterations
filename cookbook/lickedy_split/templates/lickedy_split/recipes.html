@@ -1,0 +1,118 @@
+{% extends 'lickedy_split/base.html' %}  
+{% load static %}
+
+{% block title %}
+<title>Recipes | Lickedy-Split</title>
+{% endblock %}
+    
+{% block styling %}
+<link rel="stylesheet" href="{% static 'lickedy_split/css/try.css' %}">
+<script src="{% static 'lickedy_split/js/try.js' %}"></script>
+{% endblock %}
+    
+
+{% block body %}
+    <!-- Search Bar -->
+    <div class="searchBox">
+        <input class="searchInput" type="text" name="" placeholder="Search Recipes...">
+        <button class="searchButton" href="#">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Category buttons under the search bar -->
+    <div id="buttons">
+        <button id="ingredientButton" class="button-value">Ingredients</button>
+        <button id="cuisinesButton" class="button-value">Cuisines</button>
+    </div>
+
+
+    <!-- Ingredients Category -->
+    <div id="ingredientsCategory" style="display: none;">
+        <div class="dropdown">
+            <button class="dropdown-button" id="veggiesDropdown">
+                Veggies 🥦  <span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-content" id="veggiesList" style="display: none;">
+                <!-- veggie buttons will appear here dynamically -->
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-button" id="fruitsDropdown">
+                Fruits 🍎 <span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-content" id="fruitsList" style="display:none;">
+                <!-- fruit buttons appear here dynamically -->
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-button" id="proteinDropdown">
+                Proteins  🥩 <span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-content" id="proteinList" style="display:none;">
+                <!-- protein buttons appear here dynamically -->
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-button" id="grainsDropdown">
+                Grains 🍞<span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-content" id="grainsList" style="display:none;">
+                <!-- fruit buttons appear here dynamically -->
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-button" id="dairyDropdown">
+                Dairy & Alternatives 🧀🥛<span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-content" id="dairiesList" style="display:none;">
+                <!-- fruit buttons appear here dynamically -->
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-button" id="nutsSeedsDropdown">
+                Nuts & Seeds 🌰  <span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-content" id="nutsSeedsList" style="display:none;">
+                <!-- fruit buttons appear here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cuisines Category -->
+    <div id="cuisinesCategory" style="display: none;">
+        <button class="cuisineBtn" id="italian">Italian</button>
+        <button class="cuisineBtn" id="syrian">Syrian</button>
+        <button class="cuisineBtn" id="Mexican">Mexican</button>
+        <button class="cuisineBtn" id="Chinese">Chinese</button>
+        <button class="cuisineBtn" id="turkish">Turkish</button>
+        <button class="cuisineBtn" id="iraqi">Iraqi </button>
+        <button class="cuisineBtn" id="Korean">Korean </button>
+        <button class="cuisineBtn" id="caribbean">Caribbean</button>
+        <button class="cuisineBtn" id="moroccan">Moroccan </button>
+        <button class="cuisineBtn" id="egyptian">Egyptian </button>
+        <button class="cuisineBtn" id="greek">Greek </button>
+        <button class="cuisineBtn" id="persian">Persian </button>
+        <button class="cuisineBtn" id="ethopian">Ethiopian</button>
+        <button class="cuisineBtn" id="armenian">Armenian </button>
+
+    </div>
+
+    <!-- recipe holder -->
+    <div class="recipes-container" id="recipesContainer">
+        <!-- Recipe cards will be inserted in here dynamically -->
+
+    </div>
+
+    <div id="noResultsMessage" style="display:none; color: red;">
+        No results found for your search.Try again!
+    </div>
+
+
+
+{% endblock %}

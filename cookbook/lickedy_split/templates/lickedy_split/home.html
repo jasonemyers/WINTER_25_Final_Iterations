@@ -1,0 +1,26 @@
+{% extends 'lickedy_split/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Home | Lickedy-Split</title>
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static 'lickedy_split/css/new_home.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="home_content">
+        <h1>Discover Recipes with What You Have!</h1>
+        <p>Not sure what to cook? Enter your ingredients, and we’ll find the perfect recipes for you! No wasted food, just delicious meals.</p>
+
+        <div>
+            <a href="{% url 'recipes' %}">
+                <button type="button">Explore Now</button>
+            </a>
+            <a href="{% url 'login' %}">
+                <button type="button">Log In</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

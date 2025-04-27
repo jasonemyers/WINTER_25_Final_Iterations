@@ -1,0 +1,201 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.base_wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+}
+/* Optional: Keep the banner flexible if it has more content */
+.banner {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.80)), url('../images/backgroundSH.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional for effect */
+}
+.navbar{
+    width: 85%;
+    margin: auto;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 120px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    }
+.logo img {
+    width: 70%; /* Adjust size as needed */
+    height: 50%; /* Ensure height matches width for a perfect circle */
+    border-radius: 70%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fits well inside the circle */
+    display: block; /* Prevents unwanted spacing */
+}
+.logo:hover img {
+    transform: scale(1.1); /* Zoom in effect */
+}
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+.navbar ul li::after{
+    content: "";
+    height: 3px;
+    width: 0;
+    background: #30a755;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+.navbar ul li:hover:after{
+    width: 100%;
+}
+.dropdown {
+  float: right;
+  overflow: hidden;
+  margin-right: 70px;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #30a755;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.navbar .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.navbar ul li .dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+footer {
+    background: black;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+.socialIcons{
+    display: flex;
+    justify-content: center;
+}
+.socialIcons a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #30a755; /* Icon background color */
+    color: white;
+    margin: 10px;
+    border-radius: 50%;/* Circular icons */
+}
+.socialIcons a:hover{
+     background-color: white;/* Change background on hover */
+     transition: 0.5s;/* Smooth transition */
+ }
+.socialIcons a:hover i{
+    color: #30a755;/* Change icon color on hover */
+    transition: 0.5s;
+}
+.footerBottom{
+    padding: 10px;
+    text-align: center;
+}
+.footerBottom p{
+    color: white;
+    font-size: 1em;
+}
+.footerBottom  li a{
+    color:white;
+    text-decoration: none;
+    font-size: 1.3em;
+}
+
+.designer{
+    opacity: 0.7;/* Slight transparency for designer name */
+    text-transform: uppercase;/* Uppercase text */
+    letter-spacing: 1px;/* Space between letters */
+    font-weight: 400;
+    margin: 0px 5px;
+    color: #30a755;
+}
+
+/* Tablets and smaller */
+@media (max-width: 1024px) {
+    .navbar {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 1.5rem 1rem;
+        }
+
+        .navbar ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: auto;
+            margin-left: auto;
+        }
+
+        .navbar ul li {
+            margin: 0.8rem 0;
+        }
+
+    .logo img {
+        width: 70%;
+        max-width: 100px;
+        height: auto;
+    }
+}
+
