@@ -17,7 +17,7 @@ class CustomAccountManager(BaseUserManager):
     """
     Custom user manager that handles both regular users and employees (superusers).
     """
-    def create_superuser(self, email, user_name, first_name, phone_number, password, **other_fields):
+    def create_superuser(self, email, username, first_name, phone_number, password, **other_fields):
         """
         Creates super user/employee:
         -   Staff and superuser status 
@@ -33,10 +33,10 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError('Superuser must be assigned to is_superuser=True.')
         
         return self.create_user(
-            email, user_name, first_name, password, phone_number, **other_fields
+            email, username, first_name, password, phone_number, **other_fields
         )
     
-    def create_user(self, email, user_name, first_name, password, phone_number, **other_fields):
+    def create_user(self, email, username, first_name, password, phone_number, **other_fields):
         if not email:
             raise ValueError('Users must have an email address')
         if not phone_number:
@@ -45,7 +45,7 @@ class CustomAccountManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(
             email=email,
-            user_name=user_name,
+            username=username,
             first_name=first_name,
             phone_number=phone_number,
             **other_fields
@@ -58,7 +58,7 @@ class CustomAccountManager(BaseUserManager):
 class NewUser(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(_('email address'), unique=True)
-    user_name = models.CharField(max_length=150, unique=True)
+    username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150)
     phone_number = models.CharField(
         max_length=15,
@@ -99,7 +99,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomAccountManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_name', 'first_name', 'phone_number']
+    REQUIRED_FIELDS = ['username', 'first_name', 'phone_number']
 
     # Permission system overrides
     groups = models.ManyToManyField(
@@ -120,8 +120,9 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     )
 
     def __str__(self):
-        return f"{self.user_name} ({'Employee' if self.is_superuser else 'User'})"
+        return f"{self.username} ({'Employee' if self.is_superuser else 'User'})"
 
+    """
     def clean(self):
         if self.is_superuser:
             if not self.position:
@@ -130,7 +131,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
                 raise ValidationError({'ssn': 'SSN is required for employees'})
             if not self.last_name:
                 raise ValidationError({'last_name': 'Last name is required for employees'})
-
+    """
     def save(self, *args, **kwargs):
         if self.is_superuser:
             self.is_staff = True

@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import *
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
+
 class CustomUserCreationForm(UserCreationForm):
     """
     Custom form for creating users in admin with password validation
@@ -12,8 +13,9 @@ class CustomUserCreationForm(UserCreationForm):
     """
     class Meta:
         model = NewUser
-        fields = ('email', 'user_name', 'first_name', 'phone_number')
+        fields = ('email', 'username', 'first_name', 'phone_number')
 
+"""
     def clean(self):
         cleaned_data = super().clean()
         if cleaned_data.get('is_superuser'):
@@ -26,19 +28,19 @@ class CustomUserCreationForm(UserCreationForm):
                 if not cleaned_data.get(field):
                     self.add_error(field, error_msg)
         return cleaned_data
+"""
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = NewUser
         fields = '__all__'
 
+
 class CustomUserAdmin(UserAdmin):
     model = NewUser
-    form = CustomUserChangeForm
-    add_form = CustomUserCreationForm  # Add custom validation
-    list_display = ('email', 'user_name', 'first_name', 'is_staff', 'is_active', 'created_at')
+    list_display = ('email', 'username', 'first_name', 'is_staff', 'is_active', 'created_at')
     list_filter = ('is_staff', 'is_active', 'is_superuser', 'position')
-    search_fields = ('email', 'user_name', 'first_name', 'last_name')
+    search_fields = ('email', 'username', 'first_name', 'last_name')
     ordering = ('-created_at',)
     readonly_fields = ('created_at',)
     filter_horizontal = ('groups', 'user_permissions',)
@@ -46,7 +48,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal Info'), {'fields': (
-            'user_name', 
+            'username', 
             'first_name',
             'last_name',
             'phone_number',
@@ -80,23 +82,15 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': (
-                'email',
-                'user_name',
-                'first_name',
-                'phone_number',
-                'password1',
-                'password2',
+                'email', 'username', 'first_name', 'phone_number',
+                'password1', 'password2'
             )
         }),
-        (_('Superuser Requirements'), {
+        ('Advanced', {
             'classes': ('collapse',),
             'fields': (
-                'last_name',
-                'position',
-                'ssn',
-                'is_staff',
-                'is_active',
-                'is_superuser'
+                'last_name', 'position', 'ssn', 'is_superuser',
+                'is_staff', 'is_active'
             )
         }),
     )
@@ -164,7 +158,7 @@ class UserFavoriteRecipeAdmin(admin.ModelAdmin):
 class UserIngredientAdmin(admin.ModelAdmin):
     list_display = ('user', 'ingredient', 'amount', 'measurement', 'expires_at')
     list_filter = ('measurement', 'ingredient__category')
-    search_fields = ('ingredient__name', 'user__user_name')
+    search_fields = ('ingredient__name', 'user__username')
     raw_id_fields = ('user', 'ingredient')
 
 admin.site.register(NewUser, CustomUserAdmin)
