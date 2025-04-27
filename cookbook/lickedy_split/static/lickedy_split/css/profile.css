@@ -303,7 +303,7 @@ a {
     padding: 10px 0;
     width: 100%;
 }
-/* General Styling for Recipe Cards */
+/* General Styling for Recipe Cards 
 ..recipe-card {
    border: 1px solid #ddd;
    padding: 1rem;
@@ -329,6 +329,22 @@ a {
    font-size: 0.8em;
    margin-right: 0.2em;
  }
+*/
+ .recipe-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.expandable_content_wrapper {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.expandable_content_wrapper.active {
+    max-height: 2000px; /* Adjust based on content */
+}
 
 /* Scroll button styles */
 .scroll-btn {

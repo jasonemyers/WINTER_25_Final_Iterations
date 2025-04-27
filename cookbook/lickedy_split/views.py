@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
+from .models import Recipe
 
 # Core Application Views
 def index_veiw(request):
@@ -59,9 +61,6 @@ def register_view(request):
     # GET request - show empty form
     return render(request, 'lickedy_split/register.html', {'form': CustomUserCreationForm()})
 
-def forgetpassword_view(request):
-    # index Landing page
-    return render(request, 'lickedy_split/forgetpassword.html')
 
 def recipes_view(request):
     # index Landing page
@@ -75,9 +74,14 @@ def addrecipe_view(request):
     # index Landing page
     return render(request, 'lickedy_split/addrecipe.html')
 
+@login_required
 def profile_view(request):
-    # index Landing page
-    return render(request, 'lickedy_split/profile.html')
+    user = request.user
+    context = {
+        'user_recipes': Recipe.objects.filter(created_by=user).prefetch_related('ingredient_relations__ingredient'),
+        'favorite_recipes': Recipe.objects.filter(favorited_by__user=user).prefetch_related('ingredient_relations__ingredient'),
+    }
+    return render(request, 'lickedy_split/profile.html', context)
 
 def about_view(request):
     # index Landing page

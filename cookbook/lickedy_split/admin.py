@@ -108,12 +108,13 @@ class RecipeCuisineInline(admin.TabularInline):
 
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_by', 'preparation_time', 'cook_time', 'created_at')
-    list_filter = ('created_at', 'cuisines')
-    search_fields = ('name', 'description', 'ingredients__name')
+    list_filter = ('created_at', 'cuisines__name', 'ingredients__category')
+    search_fields = ('name', 'description', 'ingredients__name','created_by__username')
     raw_id_fields = ('created_by',)
     inlines = [RecipeIngredientInline, RecipeCuisineInline]
     readonly_fields = ('created_at', 'updated_at')
-
+    autocomplete_fields = ['ingredients', 'cuisines']
+    
     fieldsets = (
         (None, {'fields': ('name', 'created_by')}),
         (_('Content'), {'fields': (
@@ -137,16 +138,16 @@ class CuisineAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
     def recipe_count(self, obj):
-        return obj.recipe_relations.count()  # Fixed related name
+         return obj.recipes.count()
 
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'recipe_count')
     list_filter = ('category',)
     search_fields = ('name',)
-    # Removed invalid prepopulated_fields
-
+    
     def recipe_count(self, obj):
         return obj.recipe_ingredients.count()
+    recipe_count.short_description = 'Used in Recipes'
 
 
 class UserFavoriteRecipeAdmin(admin.ModelAdmin):

@@ -236,7 +236,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through='RecipeIngredient',
-        related_name='recipe_ingredients'
+        related_name='recipes_using'
     )
 
     class Meta:
@@ -319,7 +319,11 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         related_name='ingredient_relations'
     )
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(
+        Ingredient, 
+        on_delete=models.CASCADE,
+        related_name='recipe_ingredients'
+    )
     amount = models.FloatField(validators=[MinValueValidator(0.0)])
     measurement = models.CharField(max_length=10, choices=MEASUREMENT_CHOICES, default='unit')
     notes = models.CharField(max_length=100, blank=True)

@@ -1,4 +1,5 @@
 {% load static %}
+{% extends 'lickedy_split/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,43 @@
           crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
+
+
+{% block content %}
+<div class="recipe-detail">
+    <h1>{{ recipe.name }}</h1>
+    <div class="recipe-meta">
+        <span>Created by {{ recipe.created_by.username }}</span>
+        <span>{{ recipe.created_at|date:"F j, Y" }}</span>
+    </div>
+    
+    {% if recipe.recipe_pic %}
+    <img src="{{ recipe.recipe_pic.url }}" alt="{{ recipe.name }}" class="recipe-image">
+    {% endif %}
+    
+    <div class="recipe-content">
+        <h2>Description</h2>
+        <p>{{ recipe.description }}</p>
+        
+        <h2>Ingredients</h2>
+        <ul class="ingredients-list">
+            {% for ingredient in recipe.ingredient_relations.all %}
+            <li>
+                {{ ingredient.amount }} {{ ingredient.get_measurement_display }}
+                {{ ingredient.ingredient.name }}
+                {% if ingredient.notes %}({{ ingredient.notes }}){% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Instructions</h2>
+        <div class="instructions">
+            {{ recipe.instructions|linebreaks }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--
 <body>
 <nav class="navbar">
     <div class="logo">
@@ -139,4 +177,5 @@
 </div>
 
 </body>
+-->
 </html>

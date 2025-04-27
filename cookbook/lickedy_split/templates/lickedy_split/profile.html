@@ -42,7 +42,7 @@
         {% csrf_token %}
         <button type="submit" class="nav-link">Log Out</button>
       </form>
-      <a href="{% url 'recipe_details' %}">Test Recipe Details</a>
+      <a href="">Test Recipe Details</a>
     </div>
   </div>
 </nav>
@@ -62,9 +62,12 @@
       </div>
       <!-- Profile Info Section -->
       <div class="profile-info">
-        <h1>Name</h1>
-        <h3>Little notes here</h3>
-        <p>About ME!!!</p>
+        <h1>{{user.username}}</h1>
+        {% if user.about %}
+        <p class="about-me">{{ user.about }}</p>
+        {% else %}
+        <button class="edit-about">Add About Me</button>
+        {% endif %}
       </div>
       <!-- Add Recipe Button -->
       <div class="profile-link">
@@ -76,50 +79,110 @@
     </div>
   </div>
 
-  <!--My Recipes-->
-  <div class="expandable">
-    <div class="expandable_title_bar">
-      <span class="expandable_title">My Recipes</span>
-      <ion-icon class="expandable_icon" name="chevron-back"></ion-icon>
-    </div>
-    <div class="expandable_content_wrapper">
+ <!-- My Recipes Section -->
+<div class="expandable">
+  <div class="expandable_title_bar">
+      <span class="expandable_title">My Recipes ({{ user_recipes.count }})</span>
+      <ion-icon class="expandable_icon" name="chevron-down"></ion-icon>
+  </div>
+  <div class="expandable_content_wrapper" style="display: block;">
       <div class="my_recipes_content">
-        <p>Your own recipes here. </p>
-        <button class="scroll-btn left" onclick="scrollLeft()">&#60;</button>
-        <!-- profile.html -->
-        <div id="recipe-list">
-          <div class="recipe-card">
-            <h3>{{ recipe.name }}</h3>
-            <p>{{ recipe.description|truncatechars:100 }}</p>
-            {% if recipe.recipe_pic %}
-            <img src="{{ recipe.recipe_pic.url }}" alt="{{ recipe.name }}">
-            {% endif %}
-            <div class="tag-list">
-              {% for tag in recipe.tags.all %}
-              <span class="tag">{{ tag.name }}</span>
+          {% if user_recipes.exists %}
+          <div class="recipe-carousel">
+              {% for recipe in user_recipes %}
+              <div class="recipe-card">
+                  <a href="{% url 'recipe_details' recipe.id %}">
+                      {% if recipe.recipe_pic %}
+                      <img src="{{ recipe.recipe_pic.url }}" alt="{{ recipe.name }}" 
+                           class="recipe-image" loading="lazy">
+                      {% else %}
+                      <div class="recipe-image-placeholder">
+                          <ion-icon name="fast-food-outline"></ion-icon>
+                      </div>
+                      {% endif %}
+                      <div class="recipe-info">
+                          <h3>{{ recipe.name }}</h3>
+                          <div class="recipe-stats">
+                              <span class="stat-item">
+                                  <ion-icon name="time-outline"></ion-icon>
+                                  {{ recipe.total_time }} mins
+                              </span>
+                              <span class="stat-item">
+                                  <ion-icon name="restaurant-outline"></ion-icon>
+                                  {{ recipe.ingredient_relations.count }} ingredients
+                              </span>
+                          </div>
+                      </div>
+                  </a>
+              </div>
               {% endfor %}
-            </div>
           </div>
-        </div>
-        <button class="scroll-btn right" onclick="scrollRight()">&#62;</button>
+          {% else %}
+          <div class="empty-state">
+              <p>You haven't created any recipes yet!</p>
+              <a href="{% url 'add_recipe' %}" class="btn-primary">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                  Create Recipe
+              </a>
+          </div>
+          {% endif %}
       </div>
-    </div>
   </div>
+</div>
 
-  <!--Favorite Recipes-->
-  <div class="expandable">
-    <div class="expandable_title_bar">
-      <span class="expandable_title"> Favorite Recipes</span>
+<!-- Favorite Recipes Section -->
+<div class="expandable">
+  <div class="expandable_title_bar">
+      <span class="expandable_title">Favorite Recipes ({{ favorite_recipes|length }})</span>
       <ion-icon class="expandable_icon" name="chevron-back"></ion-icon>
-    </div>
-    <div class="expandable_content_wrapper">
-      <div class="favorite_recipes_content">
-        <p>Your favorite recipes here. </p>
-      </div>
-    </div>
   </div>
+  <div class="expandable_content_wrapper">
+      <div class="favorite_recipes_content">
+          {% if favorite_recipes %}
+          <button class="scroll-btn left" onclick="scrollLeft('favorite-recipes-list')">&#60;</button>
+          <div id="favorite-recipes-list" class="recipe-carousel">
+              {% for recipe in favorite_recipes %}
+              <div class="recipe-card">
+                  <a href="{% url 'recipe_details' recipe.id %}">
+                      {% if recipe.recipe_pic %}
+                      <img src="{{ recipe.recipe_pic.url }}" alt="{{ recipe.name }}" class="recipe-image">
+                      {% else %}
+                      <div class="recipe-image-placeholder">
+                          <ion-icon name="fast-food-outline"></ion-icon>
+                      </div>
+                      {% endif %}
+                      <div class="recipe-info">
+                          <h3>{{ recipe.name }}</h3>
+                          <div class="meta">
+                              <span class="author">By {{ recipe.created_by.username }}</span>
+                              <form class="unfavorite-form" method="post" action="">
+                                  {% csrf_token %}
+                                  <button type="submit" class="unfavorite-btn">
+                                      <ion-icon name="heart-dislike"></ion-icon>
+                                  </button>
+                              </form>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              {% endfor %}
+          </div>
+          <button class="scroll-btn right" onclick="scrollRight('favorite-recipes-list')">&#62;</button>
+          {% else %}
+          <div class="empty-state">
+              <p>You haven't favorited any recipes yet!</p>
+              <a href="{% url 'recipes' %}" class="browse-btn">
+                  <ion-icon name="search-outline"></ion-icon>
+                  Browse Recipes
+              </a>
+          </div>
+          {% endif %}
+      </div>
+  </div>
+</div>
 
-  <!-- Recent Recipes -->
+  
+  <!-- Recent Recipes
   <div class="expandable">
     <div class="expandable_title_bar">
       <span class="expandable_title">Recent Recipes</span>
@@ -132,7 +195,7 @@
     </div>
   </div>
 
-  <!-- Meal Plan -->
+   Meal Plan
   <div class="expandable">
     <div class="expandable_title_bar">
       <span class="expandable_title">Meal Plan</span>
@@ -145,7 +208,7 @@
     </div>
   </div>
 
-  <!-- Shopping List -->
+  Shopping List
   <div class="expandable">
     <div class="expandable_title_bar">
       <span class="expandable_title">Shopping List</span>
@@ -169,15 +232,13 @@
           </select>
         </div>
         <ul class="shopping_list" id="shopping-list">
-          <!-- List items will be dynamically added here -->
+           List items will be dynamically added here
         </ul>
         <button class="add_item_button" id="add-item-button">+ Add Item</button>
       </div>
     </div>
   </div>
-
-
-
+-->
 </div>
 
 </body>
