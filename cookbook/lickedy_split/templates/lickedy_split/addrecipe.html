@@ -63,38 +63,25 @@
       {{ form.notes.errors }}
     </div>
 
-    <!-- Tags Section -->
-    <div class="tag-section">
-      <label>Tags</label>
-      <div class="predefined-tags">
-        <button type="button" class="tag-option">Appetizers</button>
-        <button type="button" class="tag-option">Asian</button>
-        <button type="button" class="tag-option">Baked Goods</button>
-        <button type="button" class="tag-option">Breakfast</button>
-        <button type="button" class="tag-option">Condiments and Sauces</button>
-        <button type="button" class="tag-option">Dessert</button>
-        <button type="button" class="tag-option">Dinner</button>
-        <button type="button" class="tag-option">Drinks</button>
-        <button type="button" class="tag-option">Healthy</button>
-        <button type="button" class="tag-option">Indian</button>
-        <button type="button" class="tag-option">Italian</button>
-        <button type="button" class="tag-option">Lunch</button>
-        <button type="button" class="tag-option">Meat</button>
-        <button type="button" class="tag-option">Mexican</button>
-        <button type="button" class="tag-option">Pasta</button>
-        <button type="button" class="tag-option">Salads</button>
-        <button type="button" class="tag-option">Seafood</button>
-        <button type="button" class="tag-option">Side Dishes</button>
-        <button type="button" class="tag-option">Smoothies</button>
-        <button type="button" class="tag-option">Snacks</button>
-        <button type="button" class="tag-option">Soup</button>
-        <button type="button" class="tag-option">Vegetarian</button>
-      </div>
+    <!-- Cuisine Section -->
+    <div class="cuisine-section">
+      <label>Cuisine</label>
+      <div id="cuisine-container"></div>
 
-      <button type="button" class="manage-tags-btn">
-        <ion-icon name="pricetag-outline"></ion-icon>
-        Add / Manage tags
-      </button>
+      <template id="cuisine-template">
+        <div class="cuisine-row">
+          <div class="cuisine-select">
+            <select name="cuisine_{index}">
+              <option value="">Select Existing Cuisine</option>
+              {% for cuisine in cuisines %}
+              <option value="{{ cuisine.id }}">{{ cuisine.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="button" class="remove-cuisine">×</button>
+        </div>
+      </template>
+      <button type="button" class="add-another" id="add-cuisine">Add Cuisine</button>
     </div>
 
 
@@ -104,8 +91,8 @@
       <!-- Prep Time -->
       <div class="form-group">
         <label>Prep Time (minutes)</label>
-        {{ form.prep_time }}
-        {{ form.prep_time.errors }}
+        {{ form.preparation_time }}
+        {{ form.preparation_time.errors }}
       </div>
 
       <!-- Cook Time -->
@@ -184,36 +171,14 @@
         {{ form.favorite.errors }}
       </div>
 
-
-      <!-- Rating Field -->
-      <div class="form-group icon-group">
-        <label>Rating </label>
-        <div class="star-rating">
-          <input type="hidden" name="rating" id="rating-value" value="0">
-          <i class="fa fa-star" data-value="1"></i>
-          <i class="fa fa-star" data-value="2"></i>
-          <i class="fa fa-star" data-value="3"></i>
-          <i class="fa fa-star" data-value="4"></i>
-          <i class="fa fa-star" data-value="5"></i>
-        </div>
-        {{ form.rating.errors }}
-      </div>
-
-    </div>
-
-
-    <!-- Delete Button (only show if editing an existing recipe) -->
-    {% if recipe %}
-    <form method="POST" action="{% url 'delete_recipe' recipe.id %}">
-      {% csrf_token %}
-      <button type="submit" class="delete-btn">Delete Recipe</button>
-    </form>
-    {% endif %}
+    
 
     <!-- Form Submission -->
     <button type="submit" class="submit-btn">Save Recipe</button>
   </form>
-</div>
 
+
+</div>
+<script src="{% static 'lickedy_split/js/addrecipe.js' %}"></script>
 </body>
 </html>

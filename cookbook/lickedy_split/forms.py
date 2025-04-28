@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
-from .models import NewUser
+from .models import NewUser, Recipe, Ingredient, MEASUREMENT_CHOICES, Cuisine
 import logging
 
 
@@ -45,3 +45,30 @@ class CustomUserCreationForm(UserCreationForm):
         self.fields['phone_number'].help_text = self.Meta.model._meta.get_field('phone_number').help_text
         self.fields['password2'].label = "Confirm Password"
         self.fields['password1'].help_text = "Minimum 8 characters with numbers/symbols"
+
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = [
+            'name', 'description', 'instructions', 'notes',
+            'preparation_time', 'cook_time', 'recipe_pic'
+        ]
+        widgets = {
+            'preparation_time': forms.NumberInput(attrs={'min': 0}),
+            'cook_time': forms.NumberInput(attrs={'min': 0}),
+        }
+
+class RecipeIngredientForm(forms.Form):
+    ingredient = forms.ModelChoiceField(
+        queryset=Ingredient.objects.all(),
+        required=False
+    )
+    new_ingredient = forms.CharField(required=False)
+    amount = forms.FloatField(min_value=0)
+    measurement = forms.ChoiceField(choices=MEASUREMENT_CHOICES)
+
+class RecipeCuisineForm(forms.Form):
+    cuisine = forms.ModelChoiceField(
+        queryset=Cuisine.objects.all(),
+        required=True
+    )
