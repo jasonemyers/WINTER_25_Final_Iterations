@@ -1,0 +1,111 @@
+/* Container */
+.container {
+  padding: 2rem;
+}
+
+/* Filters */
+.filters {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  border: 3px solid green;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.filter-input {
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--black);
+}
+
+/* Grid Layout */
+doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;               /* Space between cards */
+  max-width: 800px;        /* Constrain width */
+  margin: 0 auto;          /* Center on the page */
+  padding: 16px;
+}
+
+/* Each card container */
+.doctor-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+/* Left section: holds the avatar */
+.doctor-card-left {
+  margin-right: 16px;      /* Space between avatar and details */
+}
+
+/* Circular avatar */
+.doctor-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;      /* Makes it circular */
+  object-fit: cover;       /* Crop the image if needed */
+}
+
+/* Middle section: name, specialty, rating */
+.doctor-card-body {
+  flex: 1;                 /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Name styling */
+.doctor-name {
+  font-size: 1.25rem;
+  margin: 0 0 4px;
+  color: #333;
+}
+
+/* Specialty styling */
+.doctor-specialty {
+  margin: 0 0 8px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Rating styling */
+.doctor-rating {
+  font-weight: bold;
+  color: #444;
+}
+
+/* Right section: "View Profile" link */
+.doctor-card-right {
+  margin-left: auto;       /* Push link to the far right */
+  display: flex;
+  align-items: center;
+}
+
+/* Styled link as a button */
+.doctor-profile-link {
+  display: inline-block;
+  background-color: #e3000f;   /* Example color */
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.doctor-profile-link:hover {
+  background-color: #c0000d;
+}
+
+

@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #222;
+  }
+  
+  /* Header Styles */
+  .header-section {
+    padding: 20px 0;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .text-span {
+    color: black;
+  }
+  .text-span-2 {
+    color: #29a76c;
+  }
+  .text-span-3 {
+    color: black;
+  }
+  
+  .phone-menu {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .top-link, .link {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .brix---header-nav-menu-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .brix---header-nav-link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #1a1a1a;
+  }
+  
+  /* Hero Section */
+  .hero-section-one {
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+  }
+  
+  .hero-section-one-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .hero-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title-span {
+    color: #29a76c;
+  }
+  
+  .hero-title-description {
+    max-width: 500px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .filter-input {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .search-button {
+    padding: 10px 20px;
+    background-color: #29a76c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .hero-one-banner-image {
+    max-width: 400px;
+  }
+  
+  /* Service Section */
+  .service-section {
+    padding: 100px 20px;
+    background-color: #f8f8f8;
+    text-align: center;
+  }
+  
+  .section-sub-title {
+    font-size: 18px;
+    color: #29a76c;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .section-title.service {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+  
+  .service-slider-mask {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .service-slider-item {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    width: 300px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+  
+  .department-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0 10px;
+  }
+  
+  .department-short-details {
+    font-size: 14px;
+    color: #666;
+  }
