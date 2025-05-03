@@ -1,0 +1,22 @@
+.intro{
+  margin: 0px 65px 20px 65px;
+  padding: 20px 30px 30px 30px;
+  border: 1px solid;
+  background-color: white;
+
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.inside{
+  display: flex;
+  flex-direction: column;
+}
+.inside > div{
+  padding: 20px;
+  border: 1px solid;  
+  border-radius: 40px;
+  box-shadow: 5px 5px rgba(174, 125, 125, 0.4);
+  margin-block: 3px;
+
+}

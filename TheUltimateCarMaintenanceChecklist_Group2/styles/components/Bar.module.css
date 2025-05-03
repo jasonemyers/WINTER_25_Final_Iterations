@@ -1,0 +1,79 @@
+.bar{
+  position: relative;
+  border: 5px solid;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 80px 20px 80px;
+  padding: 10px 70px 60px 70px;
+  font-size: 50px;
+  transition: transform .2s;
+  overflow-y: hidden;
+  &:hover{
+    transform: scale(1.02);
+  }
+}
+.arrow {
+  position: absolute;
+  right: -50px;
+  transition: transform 0.2s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.absRedirect{
+  position: relative;
+  margin: 0;
+}
+.dropdown{
+  font-size: 50px;
+  font-family: 'Daruma';
+
+
+  padding-bottom: 25px;
+  position: absolute;
+  left: 5px;
+  transform-origin: center;
+  transition: transform .1s;
+
+  &:hover{
+    transform: scale(1.6);
+    color: white;
+    cursor: pointer;
+  }
+}
+.rotateDropdown{
+  transform: rotate(90deg);
+  &:hover{
+    transform: scale(1.6) rotate(90deg);
+  }
+}
+
+.inside{
+  display: flex;
+  padding-block: 1%;
+  padding-inline: 2%;
+  justify-content: space-between;
+  animation: fadeInAnimation .6s;
+  font-size: .8em;
+}
+.rowcontainer{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.columncontainer{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

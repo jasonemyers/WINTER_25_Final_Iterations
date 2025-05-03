@@ -1,0 +1,37 @@
+.intro{
+  margin: 0px 65px 20px 65px;
+  padding: 20px 30px 30px 30px;
+  border: 1px solid;
+  background-color: white;
+
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.columncontainer{
+  display: flex;
+  flex-direction: column;
+}
+.rowcontainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.notifications{
+  justify-content: space-around;
+  padding: 30px 25% 30px 25%;
+  border: 2px solid;
+  font-size: 22px;
+
+  background-color: white;
+}
+.notifications input{
+  transform: scale(2);
+}
+.notifications button{
+  padding: 10px;
+  border-radius: 5px;
+  &:hover{
+    opacity: .5;
+  }
+}

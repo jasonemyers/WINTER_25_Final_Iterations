@@ -1,0 +1,81 @@
+/* Default Mileage page */
+.mileage-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+/* Car name */
+.vehicle-info {
+  margin-bottom: 1.5rem;
+}
+
+/* Update mileage section  */
+.update-mileage {
+  margin-bottom: 2rem;
+}
+
+.update-mileage input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 200px;
+  margin-right: 0.5rem;
+}
+
+.update-mileage button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #ff4f1f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.update-mileage button:hover {
+  background-color: #d63e0f;
+}
+
+/* log section*/
+.log-section {
+  margin-bottom: 2rem;
+}
+/* Table IN log section */
+.mileage-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.mileage-table th,
+.mileage-table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.mileage-table th {
+  background-color: #f2f2f2;
+}
+.mileage-table button {
+  margin: 0 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  background-color: #ff4f1f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.mileage-table button:hover {
+  background-color: #d63e0f;
+}
+
+/* Statistics section */
+.statistics {
+  margin-top: 2rem;
+}

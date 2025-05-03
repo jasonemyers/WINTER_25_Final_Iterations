@@ -1,0 +1,94 @@
+/* General Page Layout */
+.page-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  margin: 0;
+  position: relative;  
+}
+
+.page-create::after {
+  content: "";
+  background-image: url('../../src/assets/images/deadcars.jpg');
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.9;
+  
+  width: 108%; 
+  height: 120%; 
+  
+  z-index: -1;
+  position: absolute;
+}
+/* Within Create Box */
+.create{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  position: absolute;
+  margin-top: 150px;
+  font-size: 18px;
+  background-color: rgb(238, 214, 185);
+  border: 6px dotted rgb(252, 0, 0);
+  border-radius: 30px;
+  padding: 40px;
+}
+
+.create input{
+  margin-bottom: 20px;
+  width: 70%;
+}
+.create select{
+  width: 70%;
+}
+
+.create-title{
+  font-size: 25px;
+  text-align: center;
+}
+
+.create-user{
+  margin-top: 30px;
+}
+.create-pass{
+  margin-top: 20px;
+}
+
+.create-submit{
+  margin-inline: 30px;
+  font-size: 25px;
+  border-radius: 10px;
+  border: 1px solid rgb(241, 187, 187);
+  background-color: rgb(242, 211, 250);
+  padding: 10px;
+}
+.create-submit-fail{
+  margin-inline: 30px;
+  font-size: 25px;
+  border-radius: 10px;
+  border: 1px solid rgb(241, 187, 187);
+  background-color: rgb(242, 211, 250);
+  padding: 10px;
+  opacity: .3;
+}
+
+.create-submit:hover{
+  cursor: pointer;
+  background-color: blueviolet;
+  color: beige;
+}
+
+.create-submit-message{
+  justify-self: center;
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  background-color: rgb(131, 34, 34);
+  font-size: 1.5em;
+}
